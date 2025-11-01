@@ -1,0 +1,113 @@
+<div class="container">
+  <header>
+    <div class="logo">
+      <div class="logo-icon">💼</div>
+      <h1>JobFinder</h1>
+    </div>
+    <button class="btn-primary" (click)="openAddModal()">➕ เพิ่มประกาศงาน</button>
+  </header>
+
+  <div class="search-box">
+    <input 
+      type="text" 
+      class="search-input"
+      [(ngModel)]="searchTerm"
+      (input)="filterJobs()"
+      placeholder="🔍 ค้นหางาน ตำแหน่ง บริษัท หรือสถานที่..."
+    >
+  </div>
+
+  <div class="job-list">
+    <div class="no-jobs" *ngIf="filteredJobs.length === 0">
+      ไม่พบประกาศงานที่ค้นหา
+    </div>
+
+    <div class="job-card" *ngFor="let job of filteredJobs">
+      <div class="job-header">
+        <div style="flex: 1;">
+          <h3 class="job-title">{{ job.title }}</h3>
+          <div class="job-company">{{ job.company }}</div>
+          
+          <div class="job-details">
+            <div class="job-detail-item">📍 {{ job.location }}</div>
+            <div class="job-detail-item">💰 {{ job.salary }} บาท</div>
+            <div class="job-detail-item">
+              <span class="badge">{{ job.type }}</span>
+            </div>
+          </div>
+
+          <div class="job-description">
+            <div class="job-section-title">รายละเอียดงาน:</div>
+            <div class="job-text">{{ job.description }}</div>
+            
+            <div class="job-section-title">คุณสมบัติ:</div>
+            <div class="job-text">{{ job.requirements }}</div>
+          </div>
+
+          <div class="job-date">โพสต์เมื่อ: {{ job.postedDate }}</div>
+        </div>
+
+        <div class="job-actions">
+          <button class="btn-icon btn-edit" (click)="openEditModal(job)" title="แก้ไข">✏️</button>
+          <button class="btn-icon btn-delete" (click)="deleteJob(job.id)" title="ลบ">🗑️</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" [class.active]="showModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="modal-title">{{ editingJob ? 'แก้ไขประกาศงาน' : 'เพิ่มประกาศงานใหม่' }}</h2>
+      <button class="btn-close" (click)="closeModal()">×</button>
+    </div>
+    
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">ตำแหน่งงาน *</label>
+        <input type="text" class="form-control" [(ngModel)]="formData.title">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">บริษัท *</label>
+        <input type="text" class="form-control" [(ngModel)]="formData.company">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">สถานที่ *</label>
+          <input type="text" class="form-control" [(ngModel)]="formData.location">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">เงินเดือน *</label>
+          <input type="text" class="form-control" [(ngModel)]="formData.salary" placeholder="เช่น 30,000 - 50,000">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">ประเภทงาน *</label>
+        <select class="form-control" [(ngModel)]="formData.type">
+          <option *ngFor="let type of jobTypes" [value]="type">{{ type }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">รายละเอียดงาน *</label>
+        <textarea class="form-control" [(ngModel)]="formData.description"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">คุณสมบัติผู้สมัคร *</label>
+        <textarea class="form-control" [(ngModel)]="formData.requirements"></textarea>
+      </div>
+    </div>
+    
+    <div class="modal-footer">
+      <button class="btn-secondary" (click)="closeModal()">ยกเลิก</button>
+      <button class="btn-primary" (click)="saveJob()" style="flex: 1;">💾 บันทึก</button>
+    </div>
+  </div>
+</div>
