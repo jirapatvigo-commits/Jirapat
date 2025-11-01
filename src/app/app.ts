@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 export interface Employee {
   id: number;
@@ -14,6 +16,8 @@ export interface Employee {
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [CommonModule, FormsModule],  // เพิ่มบรรทัดนี้
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

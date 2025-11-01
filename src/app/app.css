@@ -1,13 +1,7 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+:host {
+  display: block;
   min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .container {
@@ -113,7 +107,6 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: start;
-  margin-bottom: 15px;
 }
 
 .job-title {
@@ -181,16 +174,8 @@ h1 {
   font-size: 20px;
 }
 
-.btn-edit {
-  color: #2196F3;
-}
-
 .btn-edit:hover {
   background: #E3F2FD;
-}
-
-.btn-delete {
-  color: #f44336;
 }
 
 .btn-delete:hover {
@@ -280,7 +265,6 @@ h1 {
   font-size: 16px;
   outline: none;
   transition: border-color 0.3s;
-  font-family: inherit;
 }
 
 .form-control:focus {
@@ -359,5 +343,3 @@ textarea.form-control {
     margin-top: 15px;
   }
 }
-  
-  

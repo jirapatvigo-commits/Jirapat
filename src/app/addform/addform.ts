@@ -19,7 +19,7 @@ export class Addform {
 
     let emp:Employee={
       id:Math.floor(Math.random()*1000),
-      name:this.fullname(),
+      // name:this.fullname(),
       salary: this.salary().toString()
 
     }
