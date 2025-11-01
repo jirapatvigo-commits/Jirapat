@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-interface Job {
+export interface Employee {
   id: number;
   title: string;
   company: string;
@@ -17,10 +17,10 @@ interface Job {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class App {
   title = 'job-portal';
   
-  jobs: Job[] = [
+  jobs: Employee[] = [
     {
       id: 1,
       title: 'Frontend Developer',
@@ -56,12 +56,12 @@ export class AppComponent {
     }
   ];
 
-  filteredJobs: Job[] = [...this.jobs];
+  filteredJobs: Employee[] = [...this.jobs];
   searchTerm: string = '';
   showModal: boolean = false;
-  editingJob: Job | null = null;
+  editingJob: Employee | null = null;
 
-  formData: Partial<Job> = {
+  formData: Partial<Employee> = {
     title: '',
     company: '',
     location: '',
@@ -96,7 +96,7 @@ export class AppComponent {
     this.showModal = true;
   }
 
-  openEditModal(job: Job): void {
+  openEditModal(job: Employee): void {
     this.editingJob = job;
     this.formData = { ...job };
     this.showModal = true;
@@ -116,10 +116,10 @@ export class AppComponent {
     if (this.editingJob) {
       const index = this.jobs.findIndex(j => j.id === this.editingJob!.id);
       if (index !== -1) {
-        this.jobs[index] = { ...this.jobs[index], ...this.formData as Job };
+        this.jobs[index] = { ...this.jobs[index], ...this.formData as Employee };
       }
     } else {
-      const newJob: Job = {
+      const newJob: Employee = {
         id: Date.now(),
         title: this.formData.title!,
         company: this.formData.company!,
