@@ -17,12 +17,17 @@ export class Addform {
   addNewEmployee(){
     console.log("บันทึกข้อมูลใหม่");
 
-    let emp:Employee={
-      id:Math.floor(Math.random()*1000),
-      // name:this.fullname(),
-      salary: this.salary().toString()
-
-    }
+    let emp: Employee = {
+    id: 1,
+    salary: '50000',
+    title: 'Developer',           // เพิ่ม
+    company: 'ABC Company',        // เพิ่ม
+    location: 'Bangkok',           // เพิ่ม
+    type: 'Full-time',  
+    description: 'Job description here', // เพิ่ม 
+    requirements: 'Job requirements here', // เพิ่ม
+    postedDate: new Date().toISOString().split('T')[0] // เพิ่ม
+    } ;
 
     this.onSave.emit(emp)
 
