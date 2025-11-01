@@ -19,7 +19,7 @@ export interface Employee {
   standalone: true,
   imports: [CommonModule, FormsModule],  // เพิ่มบรรทัดนี้
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.css']
 })
 export class App {
   title = 'job-portal';
